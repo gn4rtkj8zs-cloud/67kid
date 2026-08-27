@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Akul Arcade</title>
+<style>
+:root{
+  --bg:#070b16;--panel:#10172a;--panel2:#151d33;--line:#26324f;
+  --text:#f7f9ff;--muted:#9ba7c4;--cyan:#31e5ff;--purple:#8664ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 15% 0,rgba(79,95,255,.22),transparent 30%),
+    linear-gradient(180deg,#070b16,#0a1020 45%,#080d19);
+}
+header{
+  width:min(1200px,94%);margin:auto;padding:24px 0;
+  display:flex;align-items:center;justify-content:space-between
+}
+.logo{font-weight:950;font-size:24px;letter-spacing:.4px}
+.logo span{color:var(--cyan)}
+.badge{
+  color:var(--muted);font-size:13px;border:1px solid var(--line);
+  background:rgba(255,255,255,.04);padding:8px 12px;border-radius:999px
+}
+main{width:min(1200px,94%);margin:auto;padding-bottom:70px}
+.hero{padding:44px 0 34px}
+.hero h1{
+  margin:0 0 14px;font-size:clamp(46px,8vw,88px);
+  line-height:.94;letter-spacing:-4px
+}
+.hero h1 span{
+  background:linear-gradient(90deg,var(--cyan),white,var(--purple));
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.hero p{max-width:690px;color:var(--muted);font-size:17px;line-height:1.65}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{
+  border:1px solid var(--line);border-radius:24px;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  transition:.2s
+}
+.card:hover{transform:translateY(-4px);border-color:#48577e}
+.thumb{
+  height:210px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;font-size:75px
+}
+.snow{background:linear-gradient(#72caff 0 43%,#edfaff 44%)}
+.road{background:linear-gradient(#7bcdf7 0 42%,#dfefff 43% 100%)}
+.city{background:linear-gradient(180deg,#3b4567,#151c2d)}
+.icy{background:linear-gradient(180deg,#9ee4ff,#eafcff)}
+.mountain{
+  position:absolute;width:320px;height:210px;background:rgba(255,255,255,.72);
+  transform:rotate(45deg);bottom:-140px;border-radius:30px
+}
+.mountain.a{left:-50px}.mountain.b{right:-40px;bottom:-155px;background:rgba(210,235,250,.85)}
+.emoji{position:relative;z-index:2;filter:drop-shadow(0 10px 7px rgba(0,0,0,.25))}
+.content{padding:19px 20px 22px}
+.content h2{margin:0 0 7px;font-size:24px}
+.content p{margin:0 0 17px;color:var(--muted);line-height:1.48}
+button{
+  border:0;border-radius:12px;padding:11px 16px;cursor:pointer;
+  color:white;font-size:15px;font-weight:850;
+  background:linear-gradient(135deg,var(--purple),#603cff)
+}
+.note{color:var(--muted);font-size:13px;margin-top:26px;line-height:1.55}
+.overlay{
+  position:fixed;inset:0;background:rgba(2,4,11,.96);
+  display:none;z-index:30;padding:14px
+}
+.overlay.show{display:flex;flex-direction:column}
+.gamebar{
+  width:min(1300px,100%);margin:auto;display:flex;align-items:center;
+  justify-content:space-between;padding:4px 2px 12px;gap:15px
+}
+.gamebar h2{margin:0;font-size:20px}
+.close{background:#202a43;border:1px solid #34415f}
+.framewrap{
+  width:min(1300px,100%);margin:auto;flex:1;min-height:0;
+  border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#000
+}
+iframe{display:block;width:100%;height:100%;border:0;min-height:75vh;background:#000}
+@media(max-width:730px){
+  .grid{grid-template-columns:1fr}.hero h1{letter-spacing:-2px}.badge{display:none}
+  .thumb{height:175px}.overlay{padding:8px}iframe{min-height:80vh}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">AKUL<span>ARCADE</span></div>
+  <div class="badge">Real web game embeds</div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Pick a game.<br><span>Play instantly.</span></h1>
+    <p>
+      A simple browser arcade using games that their hosting sites provide for embedding.
+      No downloads or installs.
+    </p>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <div class="thumb snow">
+        <div class="mountain a"></div><div class="mountain b"></div>
+        <div class="emoji">🛷</div>
+      </div>
+      <div class="content">
+        <h2>❄️ Snow Rider 3D</h2>
+        <p>The actual Snow Rider 3D web game, loaded through Miniplay's published embed.</p>
+        <button onclick="play('Snow Rider 3D','https://www.miniplay.com/embed/snow-rider-3d')">Play Snow Rider 3D</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="thumb road">
+        <div class="mountain a"></div><div class="mountain b"></div>
+        <div class="emoji">🏂</div>
+      </div>
+      <div class="content">
+        <h2>🏂 Snow Road</h2>
+        <p>Fast downhill sledding with obstacles, gifts, and an endless snowy course.</p>
+        <button onclick="play('Snow Road','https://www.miniplay.com/embed/snow-road')">Play Snow Road</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="thumb city">
+        <div class="emoji">🏎️</div>
+      </div>
+      <div class="content">
+        <h2>🏎️ City Rider 3D V2</h2>
+        <p>Choose a vehicle and drive around a 3D city environment.</p>
+        <button onclick="play('City Rider 3D V2','https://www.miniplay.com/embed/city-rider-3d-v2')">Play City Rider</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="thumb icy">
+        <div class="mountain a"></div><div class="mountain b"></div>
+        <div class="emoji">🐒🏂</div>
+      </div>
+      <div class="content">
+        <h2>🧊 Icy Dash</h2>
+        <p>A snowy downhill racing game with jumps, obstacles, tricks, and rivals.</p>
+        <button onclick="play('Icy Dash','https://www.miniplay.com/embed/icy-dash')">Play Icy Dash</button>
+      </div>
+    </article>
+  </section>
+
+  <p class="note">
+    Games load from their original host. If a network administrator blocks the game provider,
+    this page will respect that restriction rather than bypass it.
+  </p>
+</main>
+
+<div class="overlay" id="overlay">
+  <div class="gamebar">
+    <h2 id="gameTitle">Game</h2>
+    <button class="close" onclick="closeGame()">✕ Close Game</button>
+  </div>
+  <div class="framewrap">
+    <iframe id="gameFrame" allow="fullscreen; autoplay; gamepad" allowfullscreen></iframe>
+  </div>
+</div>
+
+<script>
+const overlay=document.getElementById('overlay');
+const frame=document.getElementById('gameFrame');
+const gameTitle=document.getElementById('gameTitle');
+
+function play(name,url){
+  gameTitle.textContent=name;
+  frame.src=url;
+  overlay.classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeGame(){
+  frame.src='about:blank';
+  overlay.classList.remove('show');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape' && overlay.classList.contains('show')) closeGame();
+});
+</script>
+</body>
+</html>
